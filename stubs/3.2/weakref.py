@@ -3,7 +3,7 @@
 # NOTE: These are incomplete!
 
 from typing import (
-    typevar, Generic, Any, Function, overload, Mapping, Iterator, Dict, Tuple,
+    typevar, Generic, Any, Function, overload, MutableMapping, Iterator, Dict, Tuple,
     Iterable
 )
 
@@ -26,7 +26,7 @@ class WeakValueDictionary(Generic[KT, VT]):
     @overload
     def __init__(self) -> None: pass
     @overload
-    def __init__(self, map: Mapping[KT, VT]) -> None: pass
+    def __init__(self, map: MutableMapping[KT, VT]) -> None: pass
     
     def __len__(self) -> int: pass    
     def __getitem__(self, k: KT) -> VT: pass
@@ -57,11 +57,11 @@ class WeakValueDictionary(Generic[KT, VT]):
     def setdefault(self, k: KT, default: VT) -> VT: pass
     
     @overload
-    def update(self, m: Mapping[KT, VT]) -> None: pass
+    def update(self, m: MutableMapping[KT, VT]) -> None: pass
     @overload
     def update(self, m: Iterable[Tuple[KT, VT]]) -> None: pass
     
-    # NOTE: incompatible with Mapping
+    # NOTE: incompatible with MutableMapping
     def keys(self) -> Iterator[KT]: pass
     def values(self) -> Iterator[VT]: pass
     def items(self) -> Iterator[Tuple[KT, VT]]: pass

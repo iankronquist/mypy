@@ -36,7 +36,7 @@ __all__ = [
     'Sequence',
     'Sized',
     'AbstractSet',
-    'Mapping',
+    'MutableMapping',
     'BinaryIO',
     'TextIO',
 ]
@@ -177,7 +177,7 @@ def union(x): return x
 
 Union = TypeAlias(union)
 
-class typevar:
+class typevar(type):
     def __init__(self, name, *, values=None):
         self.name = name
         self.values = values
@@ -447,7 +447,7 @@ for t in set, frozenset, type({}.keys()), type({}.items()):
     AbstractSet.register(t)
 
 
-class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
+class MutableMapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     @abstractmethod
     def __getitem__(self, k: KT) -> VT: pass
     @abstractmethod
@@ -460,7 +460,7 @@ class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     @abstractmethod
     def clear(self) -> None: pass
     @abstractmethod
-    def copy(self) -> 'Mapping[KT, VT]': pass
+    def copy(self) -> 'MutableMapping[KT, VT]': pass
     @overload
     @abstractmethod
     def get(self, k: KT) -> VT: pass
@@ -484,7 +484,7 @@ class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     
     @overload
     @abstractmethod
-    def update(self, m: 'Mapping[KT, VT]') -> None: pass
+    def update(self, m: 'MutableMapping[KT, VT]') -> None: pass
     @overload
     @abstractmethod
     def update(self, m: Iterable[Tuple[KT, VT]]) -> None: pass
@@ -498,7 +498,7 @@ class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
 
 
 # TODO Consider more types: os.environ, etc. However, these add dependencies.
-Mapping.register(dict)
+MutableMapping.register(dict)
 
 
 # Note that the BinaryIO and TextIO classes must be in sync with typing module

@@ -2,7 +2,7 @@
 
 from typing import (
     Undefined, typevar, AbstractGeneric, Iterator, Iterable, overload,
-    Sequence, Mapping, Tuple, List, Any, Dict, Function, Generic, Set,
+    Sequence, MutableMapping, Tuple, List, Any, Dict, Function, Generic, Set,
     AbstractSet, Sized, Reversible, SupportsInt, SupportsFloat, SupportsAbs,
     SupportsRound, IO, builtinclass, ducktype, Union
 )
@@ -196,7 +196,7 @@ class str(Sequence[str]):
     def find(self, sub: str, start: int = 0, end: int = 0) -> int: pass
 
     def format(self, *args: Any, **kwargs: Any) -> str: pass
-    def format_map(self, map: Mapping[str, Any]) -> str: pass
+    def format_map(self, map: MutableMapping[str, Any]) -> str: pass
 
     def index(self, sub: str, start: int = 0, end: int = 0) -> int: pass
 
@@ -534,11 +534,11 @@ class list(Sequence[T], Reversible[T], AbstractGeneric[T]):
 
 
 @builtinclass
-class dict(Mapping[KT, VT], Generic[KT, VT]):
+class dict(MutableMapping[KT, VT], Generic[KT, VT]):
     @overload
     def __init__(self) -> None: pass
     @overload
-    def __init__(self, map: Mapping[KT, VT]) -> None: pass
+    def __init__(self, map: MutableMapping[KT, VT]) -> None: pass
     @overload
     def __init__(self, iterable: Iterable[Tuple[KT, VT]]) -> None: pass
     # TODO __init__ keyword args
@@ -560,7 +560,7 @@ class dict(Mapping[KT, VT], Generic[KT, VT]):
     def setdefault(self, k: KT, default: VT=None) -> VT: pass
 
     @overload
-    def update(self, m: Mapping[KT, VT]) -> None: pass
+    def update(self, m: MutableMapping[KT, VT]) -> None: pass
     @overload
     def update(self, m: Iterable[Tuple[KT, VT]]) -> None: pass
 
@@ -711,7 +711,7 @@ def divmod(a: _N, b: _N) -> Tuple[_N, _N]: pass
 
 # TODO code object as source
 def eval(source: str, globals: Dict[str, Any] = None,
-         locals: Mapping[str, Any] = None) -> Any: pass
+         locals: MutableMapping[str, Any] = None) -> Any: pass
 
 def filter(function: Function[[T], Any],
            iterable: Iterable[T]) -> Iterator[T]: pass

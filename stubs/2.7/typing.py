@@ -110,7 +110,7 @@ class AbstractSet(Sized, Iterable[T], AbstractGeneric[T]):
     @abstractmethod
     def isdisjoint(self, s: AbstractSet[T]) -> bool: pass
 
-class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
+class MutableMapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     @abstractmethod
     def __getitem__(self, k: KT) -> VT: pass
     @abstractmethod
@@ -123,7 +123,7 @@ class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     @abstractmethod
     def clear(self) -> None: pass
     @abstractmethod
-    def copy(self) -> Mapping[KT, VT]: pass
+    def copy(self) -> MutableMapping[KT, VT]: pass
     @overload
     @abstractmethod
     def get(self, k: KT) -> VT: pass
@@ -148,7 +148,7 @@ class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     # TODO keyword arguments
     @overload
     @abstractmethod
-    def update(self, m: Mapping[KT, VT]) -> None: pass
+    def update(self, m: MutableMapping[KT, VT]) -> None: pass
     @overload
     @abstractmethod
     def update(self, m: Iterable[Tuple[KT, VT]]) -> None: pass

@@ -1,7 +1,7 @@
 """Classes for representing mypy types."""
 
 from abc import abstractmethod
-from typing import Undefined, Any, typevar, List, Tuple, cast, Generic, Set
+from typing import Undefined, Any, AnyStr, typevar, List, Tuple, cast, Generic, Set
 
 import mypy.nodes
 

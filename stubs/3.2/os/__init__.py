@@ -3,7 +3,7 @@
 
 # based on http://docs.python.org/3.2/library/os.html
 
-from typing import Undefined, Mapping, Dict, List, overload, Any, Tuple, Iterator
+from typing import Undefined, MutableMapping, Dict, List, overload, Any, Tuple, Iterator
 from builtins import OSError as error
 import os.path as path
 
@@ -58,8 +58,8 @@ R_OK = 0
 W_OK = 0
 X_OK = 0
 
-environ = Undefined(Mapping[str, str])
-environb = Undefined(Mapping[bytes, bytes])
+environ = Undefined(MutableMapping[str, str])
+environb = Undefined(MutableMapping[bytes, bytes])
 
 confstr_names = Undefined(Dict[str, int])  # Unix only
 pathconf_names = Undefined(Dict[str, int]) # Unix only
@@ -399,20 +399,20 @@ def execv(path: str, args: List[str]) -> None: pass
 @overload
 def execv(path: bytes, args: List[bytes]) -> None: pass
 @overload
-def execve(path: str, args: List[str], env: Mapping[str, str]) -> None: pass
+def execve(path: str, args: List[str], env: MutableMapping[str, str]) -> None: pass
 @overload
 def execve(path: bytes, args: List[bytes],
-           env: Mapping[str, str]) -> None: pass
+           env: MutableMapping[str, str]) -> None: pass
 @overload
 def execvp(file: str, args: List[str]) -> None: pass
 @overload
 def execvp(file: bytes, args: List[bytes]) -> None: pass
 @overload
 def execvpe(file: str, args: List[str],
-            env: Mapping[str, str]) -> None: pass
+            env: MutableMapping[str, str]) -> None: pass
 @overload
 def execvpe(file: bytes, args: List[bytes],
-            env: Mapping[str, str]) -> None: pass
+            env: MutableMapping[str, str]) -> None: pass
 def _exit(n: int) -> None: pass
 def fork() -> int: pass  # Unix only
 def forkpty() -> Tuple[int, int]: pass  # some flavors of Unix
@@ -455,21 +455,21 @@ def spawnv(mode: int, path: str, args: List[str]) -> int: pass
 def spawnv(mode: int, path: bytes, args: List[bytes]) -> int: pass
 @overload
 def spawnve(mode: int, path: str, args: List[str],
-            env: Mapping[str, str]) -> int: pass
+            env: MutableMapping[str, str]) -> int: pass
 @overload
 def spawnve(mode: int, path: bytes, args: List[bytes],
-            env: Mapping[str, str]) -> int: pass
+            env: MutableMapping[str, str]) -> int: pass
 @overload
 def spawnvp(mode: int, file: str, args: List[str]) -> int: pass  # Unix only
 @overload
 def spawnvp(mode: int, file: bytes, args: List[bytes]) -> int: pass
 @overload
 def spawnvpe(mode: int, file: str, args: List[str],
-             env: Mapping[str, str]) -> int: 
+             env: MutableMapping[str, str]) -> int: 
     pass  # Unix only
 @overload
 def spawnvpe(mode: int, file: bytes, args: List[bytes],
-             env: Mapping[str, str]) -> int: pass
+             env: MutableMapping[str, str]) -> int: pass
 
 @overload
 def startfile(path: str) -> None: pass  # Windows only

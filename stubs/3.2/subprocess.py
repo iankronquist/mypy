@@ -2,20 +2,20 @@
 
 # Based on http://docs.python.org/3.2/library/subprocess.html
 
-from typing import Sequence, Any, Mapping, Undefined, Function, Tuple, IO
+from typing import Sequence, Any, MutableMapping, Undefined, Function, Tuple, IO
 
 # TODO force keyword arguments
 # TODO more keyword arguments
 def call(args: Sequence[str], *, stdin: Any = None, stdout: Any = None,
          stderr: Any = None, shell: bool = False,
-         env: Mapping[str, str] = None) -> int: pass
+         env: MutableMapping[str, str] = None) -> int: pass
 def check_call(args: Sequence[str], *, stdin: Any = None, stdout: Any = None,
                stderr: Any = None, shell: bool = False,
-               env: Mapping[str, str] = None) -> int: pass
+               env: MutableMapping[str, str] = None) -> int: pass
 # Return str/bytes
 def check_output(args: Sequence[str], *, stdin: Any = None, stderr: Any = None,
                  shell: bool = False, universal_newlines: bool = False,
-                 env: Mapping[str, str] = None) -> Any: pass
+                 env: MutableMapping[str, str] = None) -> Any: pass
 
 # TODO types
 PIPE = Undefined(Any)
@@ -44,7 +44,7 @@ class Popen:
                   close_fds: bool = True,
                   shell: bool = False,
                   cwd: str = None,
-                  env: Mapping[str, str] = None,
+                  env: MutableMapping[str, str] = None,
                   universal_newlines: bool = False,
                   startupinfo: Any = None,
                   creationflags: int = 0,
