@@ -34,6 +34,7 @@ __all__ = [
     'Iterable',
     'Iterator',
     'Sequence',
+    'MutableSequence',
     'Sized',
     'AbstractSet',
     'MutableMapping',
@@ -404,6 +405,28 @@ class Iterator(Iterable[T], Protocol[T]):
     @abstractmethod
     def __next__(self) -> T: pass
 
+class MutableSequence(Sized, Iterable[T], Container[T], AbstractGeneric[T]):
+    @abstractmethod
+    @overload
+    def __getitem__(self, i: int) -> T: pass
+    
+    @abstractmethod
+    @overload
+    def __getitem__(self, s: slice) -> 'Sequence[T]': pass
+    
+    @abstractmethod
+    def __reversed__(self, s: slice) -> Iterator[T]: pass
+    
+    @abstractmethod
+    def index(self, x) -> int: pass
+    
+    @abstractmethod
+    def count(self, x) -> int: pass
+
+
+for t in list, bytearray, range:
+    MutableSequence.register(t)
+
 
 class Sequence(Sized, Iterable[T], Container[T], AbstractGeneric[T]):
     @abstractmethod
@@ -424,7 +447,7 @@ class Sequence(Sized, Iterable[T], Container[T], AbstractGeneric[T]):
     def count(self, x) -> int: pass
 
 
-for t in list, tuple, str, bytes, range:
+for t in list, tuple, str, bytes, bytearray, range:
     Sequence.register(t)
 
 
