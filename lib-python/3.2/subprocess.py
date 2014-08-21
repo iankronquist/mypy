@@ -348,7 +348,7 @@ import warnings
 import errno
 
 from typing import (
-    Any, Tuple, List, Sequence, Undefined, Function, Mapping, cast, Set, Dict,
+    Any, Tuple, List, Sequence, Undefined, Function, MutableMapping, cast, Set, Dict,
     IO, TextIO, Traceback, AnyStr
 )
 
@@ -653,7 +653,7 @@ class Popen(object):
                  preexec_fn: Function[[], Any] = None,
                  close_fds: Any = _PLATFORM_DEFAULT_CLOSE_FDS,
                  shell: int = False, cwd: str = None,
-                 env: Mapping[str, str] = None,
+                 env: MutableMapping[str, str] = None,
                  universal_newlines: int = False,
                  startupinfo: 'STARTUPINFO' = None, creationflags: int = 0,
                  restore_signals: bool = True, start_new_session: bool = False,
@@ -925,7 +925,7 @@ class Popen(object):
 
         def _execute_child(self, args: Sequence[str], executable: str,
                            preexec_fn: Function[[], Any], close_fds: Any,
-                           pass_fds: Any, cwd: str, env: Mapping[str, str],
+                           pass_fds: Any, cwd: str, env: MutableMapping[str, str],
                            universal_newlines: int,
                            startupinfo: STARTUPINFO, creationflags: int,
                            shell: int,
@@ -1171,7 +1171,7 @@ class Popen(object):
 
         def _execute_child(self, args: Sequence[str], executable: str,
                            preexec_fn: Function[[], Any], close_fds: Any,
-                           pass_fds: Any, cwd: str, env: Mapping[str, str],
+                           pass_fds: Any, cwd: str, env: MutableMapping[str, str],
                            universal_newlines: int,
                            startupinfo: 'STARTUPINFO', creationflags: int,
                            shell: int,

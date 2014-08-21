@@ -13,7 +13,7 @@ hello, world
 
 [case testAbstractBaseClasses]
 import re
-from typing import Sized, Sequence, Iterator, Iterable, Mapping, AbstractSet
+from typing import Sized, Sequence, Iterator, Iterable, MutableMapping, AbstractSet
 
 def check(o, t):
     rep = re.sub('0x[0-9a-f]+', '0x...', repr(o))
@@ -25,7 +25,7 @@ def f():
     check({1:3}, Sequence)
     check(iter('x'), Iterator)
     check('x', Iterable)
-    check({}, Mapping)
+    check({}, MutableMapping)
     check(set([1]), AbstractSet)
 
 f()
@@ -35,7 +35,7 @@ f()
 {1: 3} <class 'typing.Sequence'> False
 <str_iterator object at 0x...> <class 'typing.Iterator'> True
 'x' <class 'typing.Iterable'> True
-{} <class 'typing.Mapping'> True
+{} <class 'typing.MutableMapping'> True
 {1} <class 'typing.AbstractSet'> True
 
 [case testSized]
@@ -728,10 +728,10 @@ print(A)
 [out]
 <class '__main__.A'>
 
-[case testMappingMethods]
+[case testMutableMappingMethods]
 # Regression test
-from typing import Mapping
-x = {'x': 'y'} # type: Mapping[str, str]
+from typing import MutableMapping
+x = {'x': 'y'} # type: MutableMapping[str, str]
 print('x' in x)
 print('y' in x)
 [out]

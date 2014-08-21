@@ -10,7 +10,7 @@
 
 from typing import (
     typevar, Iterable, AbstractGeneric, Iterator, Dict, Generic, overload,
-    Mapping, List, Tuple, Undefined, Function, Set, Sequence, Sized
+    MutableMapping, List, Tuple, Undefined, Function, Set, Sequence, Sized
 )
 
 T = typevar('T')
@@ -51,7 +51,7 @@ class Counter(Dict[T, int], Generic[T]):
     @overload
     def __init__(self) -> None: pass
     @overload
-    def __init__(self, Mapping: Mapping[T, int]) -> None: pass
+    def __init__(self, MutableMapping: MutableMapping[T, int]) -> None: pass
     @overload
     def __init__(self, iterable: Iterable[T]) -> None: pass
     # TODO keyword arguments
@@ -64,7 +64,7 @@ class Counter(Dict[T, int], Generic[T]):
     def most_common(self, n: int) -> List[T]: pass
     
     @overload
-    def subtract(self, Mapping: Mapping[T, int]) -> None: pass
+    def subtract(self, MutableMapping: MutableMapping[T, int]) -> None: pass
     @overload
     def subtract(self, iterable: Iterable[T]) -> None: pass
     
@@ -82,14 +82,14 @@ class defaultdict(Dict[KT, VT], Generic[KT, VT]):
     @overload
     def __init__(self) -> None: pass
     @overload
-    def __init__(self, map: Mapping[KT, VT]) -> None: pass
+    def __init__(self, map: MutableMapping[KT, VT]) -> None: pass
     @overload
     def __init__(self, iterable: Iterable[Tuple[KT, VT]]) -> None: pass
     @overload
     def __init__(self, default_factory: Function[[], VT]) -> None: pass
     @overload
     def __init__(self, default_factory: Function[[], VT],
-                 map: Mapping[KT, VT]) -> None: pass
+                 map: MutableMapping[KT, VT]) -> None: pass
     @overload
     def __init__(self, default_factory: Function[[], VT],
                  iterable: Iterable[Tuple[KT, VT]]) -> None: pass

@@ -2,7 +2,7 @@
 
 # Based on http://docs.python.org/3.2/library/string.html
 
-from typing import Mapping
+from typing import MutableMapping
 
 ascii_letters = ''
 ascii_lowercase = ''
@@ -20,8 +20,8 @@ class Template:
     template = ''
     
     def __init__(self, template: str) -> None: pass
-    def substitute(self, mapping: Mapping[str, str], **kwds: str) -> str: pass
-    def safe_substitute(self, mapping: Mapping[str, str],
+    def substitute(self, mapping: MutableMapping[str, str], **kwds: str) -> str: pass
+    def safe_substitute(self, mapping: MutableMapping[str, str],
                         **kwds: str) -> str: pass
 
 # TODO Formatter

@@ -36,7 +36,7 @@ __all__ = [
     'Sequence',
     'Sized',
     'AbstractSet',
-    'Mapping',
+    'MutableMapping',
     'BinaryIO',
     'TextIO',
 ]
@@ -421,7 +421,7 @@ for t in set, frozenset, type({}.keys()), type({}.items()):
     AbstractSet.register(t)
 
 
-class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
+class MutableMapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
     @abstractmethod
     def __getitem__(self, k): pass
     @abstractmethod
@@ -464,7 +464,7 @@ class Mapping(Sized, Iterable[KT], AbstractGeneric[KT, VT]):
 
 
 # TODO Consider more types: os.environ, etc. However, these add dependencies.
-Mapping.register(dict)
+MutableMapping.register(dict)
 
 
 # Note that the BinaryIO and TextIO classes must be in sync with typing module stubs.
